@@ -25,6 +25,10 @@ class Citas {
         this.citas = this.citas.filter(cita => cita.id !== id)
     }
 
+    editarCita(citaActualiza) {
+        this.citas = this.citas.map( cita => cita.id === citaActualiza .id ? citaActualiza : cita )
+    }
+
 }
 
 class UI {
@@ -181,7 +185,11 @@ function nuevaCita(e) {
         ui.imprimirAlerta('Editado correctamente');
 
         // pasar el objeto de la cita a edicion
+        administrarCitas.editarCita({...citaObj})
+
+        // regresar el texto a su estado original
         fomrmulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+
         // quitar modo edicion
         editando = false;
 
